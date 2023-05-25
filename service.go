@@ -9,8 +9,7 @@ import (
 //Kubernetes sets the env var xxx_SERVICE_HOST and xxx_SERVICE_PORT for each service where xxx is the name of your service
 //see https://kubernetes.io/docs/concepts/services-networking/service/#environment-variables
 
-// For this to work, you must set the service name to the same value as the deployment name with "-svc" appended
-// this translates as "_SVC" in the env var name which is then appended with "_HOST" or "_PORT" to get the service host and port
+// For this to work, you must set the service name to the same value as the deployment name
 
 func GetInternalServiceName() string {
 	deploymentName := GetDeploymentName()
