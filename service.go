@@ -27,13 +27,13 @@ func GetInternalServiceName() string {
 		}
 	}
 
-	return GetDeploymentName() + "-svc"
+	return GetDeploymentName() + "-service"
 }
 
 func GetInternalServiceIP() string {
-	envName := transformStringToEnvVarName(GetInternalServiceName() + "_HOST")
+	envName := transformStringToEnvVarName(GetInternalServiceName())
 
-	serviceHost, ok := os.LookupEnv(envName + "_SERVICE_HOST")
+	serviceHost, ok := os.LookupEnv(envName + "_HOST")
 	if ok {
 		return serviceHost
 	} else {
@@ -42,13 +42,13 @@ func GetInternalServiceIP() string {
 }
 
 func GetInternalServicePort() int {
-	envName := transformStringToEnvVarName(GetInternalServiceName() + "_PORT")
+	envName := transformStringToEnvVarName(GetInternalServiceName())
 
 	// Debug
 	log.Println("KU: envName = ", envName)
 	//
 
-	servicePort, ok := os.LookupEnv(envName + "_SERVICE_PORT")
+	servicePort, ok := os.LookupEnv(envName + "_PORT")
 	//Debug
 	log.Println("KU: SERVICE_PORT = ", servicePort)
 	//
