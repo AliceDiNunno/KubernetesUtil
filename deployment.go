@@ -1,6 +1,9 @@
 package KubernetesUtil
 
-import "os"
+import (
+	"log"
+	"os"
+)
 
 func GetDeploymentName() string {
 	//you must set the env var DEPLOYMENT_NAME in your deployment yaml using the value of metadata.name to use this api
@@ -8,8 +11,16 @@ func GetDeploymentName() string {
 
 	deploymentName, ok := os.LookupEnv("DEPLOYMENT_NAME")
 	if ok {
+
+		//Debug
+		log.Println("KU: DEPLOYMENT_NAME = ", deploymentName)
+		//
+
 		return deploymentName
 	} else {
+		//Debug
+		log.Println("KU: DEPLOYMENT_NAME NOT FOUND")
+		//
 		return ""
 	}
 }

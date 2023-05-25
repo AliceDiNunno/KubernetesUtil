@@ -1,6 +1,7 @@
 package KubernetesUtil
 
 import (
+	"log"
 	"os"
 	"strconv"
 	"strings"
@@ -25,6 +26,7 @@ func GetInternalServiceName() string {
 			deploymentName = ""
 		}
 	}
+
 	return GetDeploymentName() + "-svc"
 }
 
@@ -42,12 +44,20 @@ func GetInternalServiceIP() string {
 func GetInternalServicePort() int {
 	envName := transformStringToEnvVarName(GetInternalServiceName() + "_PORT")
 
+	// Debug
+	log.Println("KU: envName = ", envName)
+	//
+
 	servicePort, ok := os.LookupEnv(envName + "_SERVICE_PORT")
+	//Debug
+	log.Println("KU: SERVICE_PORT = ", servicePort)
+	//
 	if ok {
 		port, err := strconv.Atoi(servicePort)
-		if err != nil {
+		if err == nil {
 			return port
 		}
+
 		return 0
 	} else {
 		return 0
