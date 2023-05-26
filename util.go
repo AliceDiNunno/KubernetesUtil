@@ -1,7 +1,6 @@
 package KubernetesUtil
 
 import (
-	"log"
 	"os"
 	"strings"
 )
@@ -9,11 +8,7 @@ import (
 func IsRunningInKubernetes() bool {
 	//Kubernetes sets the env var KUBERNETES_SERVICE_HOST
 	_, ok := os.LookupEnv("KUBERNETES_SERVICE_HOST")
-
-	//Debug
-	log.Println("KU: KUBERNETES_SERVICE_HOST = ", ok)
-	//
-
+	
 	return ok
 }
 
